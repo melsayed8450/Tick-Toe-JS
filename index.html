@@ -1,27 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Tick Toe</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Tick Toe</title>
 </head>
 <body>
-    <div class="container">
-    <div class="grid-container">
-        <div class="grid-item" id="1"></div>
-        <div class="grid-item" id="2"></div>
-        <div class="grid-item" id="3"></div>
-        <div class="grid-item" id="4"></div>
-        <div class="grid-item" id="5"></div>
-        <div class="grid-item" id="6"></div>
-        <div class="grid-item" id="7"></div>
-        <div class="grid-item" id="8"></div>
-        <div class="grid-item" id="9"></div>
-      </div>
-      <h1 id="gameState">Game in progress</h1>
-      <button class="button" id="restartButton">Restart</button>
+  <div class="container">
+    <label for="rowsInput" class="input-label">Enter number of Rows:</label>
+    <input id="rowsInput" type="number" class="input-field" value="3" min="1" max="10">
+    <label for="columnsInput" class="input-label">Enter number of Columns:</label>
+    <input id="columnsInput" type="number" class="input-field"value="3" min="1" max="10">
+    <label for="targetInput" class="input-label">Enter target number:</label>
+    <input id="targetInput" type="number" class="input-field" value="3" min="1" max="3">
+      <button class="button" id="startGameButton">Start Game</button>
     </div>
-      <script src="index.js"></script>
+  <script src="index.js"></script>
 </body>
 </html>
