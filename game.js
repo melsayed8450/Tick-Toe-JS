@@ -30,10 +30,10 @@ document.addEventListener('DOMContentLoaded', function() {
     gridContainer.style.gridTemplateRows = `repeat(${rows}, 100px)`;
     }
 
-    var gridArray = new Array(3 * rows);
-    for (var i = -rows; i < 3 * rows; i++) {
-      gridArray[i] = new Array(3*columns);
-      for (var j = -columns; j < 3*columns; j++) {
+    var gridArray = new Array(4 * rows);
+    for (var i = -2*rows; i < 3 * rows; i++) {
+      gridArray[i] = new Array(columns);
+      for (var j = 0; j < columns; j++) {
         gridArray[i][j] = "";
       }
     }
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
         }
-        for(let i = 0; i < rows; i++){
+        for(let i = - rows; i < 2*rows; i++){
             var ans = 0;
             var i2 = i;
             for(let j = 0; j < columns; j++){
@@ -103,49 +103,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 }else ans = 0;
                 i2++;
             }
-        }
-        for(let i = 0; i < columns; i++){
-            var ans = 0;
-            var i2 = i;
-            for(let j = 0; j < rows; j++){
-                if(gridArray[j][i2] == turn){
-                    ans++;
-                    if(ans == target){
+            var ans2 = 0;
+            i2 = i;
+            for(let j = columns -1; j >= 0; j--){
+                if(gridArray[i2][j] == turn){
+                    ans2++;
+                    if(ans2 == target){
                         gameState.textContent = `${turn} Won`;
                         return;
                     }
-                }else ans = 0;
+                }else ans2 = 0;
                 i2++;
             }
         }
-        for(let i = 0; i < rows; i++){
-            var ans = 0;
-            var i2 = i;
-            for(let j = 0; j < columns; j++){
-                if(gridArray[i2][j] == turn){
-                    ans++;
-                    if(ans == target){
-                        gameState.textContent = `${turn} Won`;
-                        return;
-                    }
-                }else ans = 0;
-                i2--;
-            }
-        }
-        for(let i = 0; i < columns; i++){
-            var ans = 0;
-            var i2 = i;
-            for(let j = 0; j < rows; j++){
-                if(gridArray[j][i2] == turn){
-                    ans++;
-                    if(ans == target){
-                        gameState.textContent = `${turn} Won`;
-                        return;
-                    }
-                }else ans = 0;
-                i2--;
-            }
-        }
+       
     }
 
     
