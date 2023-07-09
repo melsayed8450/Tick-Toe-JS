@@ -17,10 +17,19 @@ function startGameButtonClick() {
   var rowsInput = document.getElementById("rowsInput");
   var columnsInput = document.getElementById("columnsInput");
   var targetInput = document.getElementById("targetInput");
-  localStorage.setItem('rows', rowsInput.value);
+  if(targetInput.value > rowsInput.value && targetInput.value > columnsInput.value){
+  warn("Target has to be less than or equal to rows and columns");
+    
+  }else{
+    localStorage.setItem('rows', rowsInput.value);
   localStorage.setItem('columns', columnsInput.value);
   localStorage.setItem('target', targetInput.value);
   window.location.href = "game.html";
+  }
+  
+}
+function warn(message) {
+  alert (message);
 }
 });
 

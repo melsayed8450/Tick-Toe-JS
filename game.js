@@ -60,61 +60,76 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    function loopDiagonally(mainDiagonal, j2){
+        for(let i = 0; i < rows; i++){
+            if(gridArray[i][j2] == turn){
+                ans++;
+                if(ans == target){
+                    gameState.textContent = `${turn} Won`;
+                    return;
+                }
+            }else ans = 0;
+            mainDiagonal? j2++ : j2--;
+    }  
+    }
+
 
     function checkWin(){
-        for(let i = 0; i < rows; i++){
-            var ans = 0;
-            for(let j = 0; j < columns; j++){
-                if(gridArray[i][j] == turn){
-                    ans++;
-                    if(ans == target){
-                        gameState.textContent = `${turn} Won`;
-                        return;
-                    }
-                }else ans = 0;
-
+        if(columns>=target){
+            for(let i = 0; i < rows; i++){
+                var ans = 0;
+                for(let j = 0; j < columns; j++){
+                    if(gridArray[i][j] == turn){
+                        ans++;
+                        if(ans == target){
+                            gameState.textContent = `${turn} Won`;
+                            return;
+                        }
+                    }else ans = 0;
+                }
             }
-            
         }
-        for(let i = 0; i < columns; i++){
-            var ans = 0;
-            for(let j = 0; j < rows; j++){
-                if(gridArray[j][i] == turn){
-                    ans++;
-                    if(ans == target){
-                        gameState.textContent = `${turn} Won`;
-                        return;
-                    }
-                }else ans = 0;
-
+        if(rows>=target){
+            for(let i = 0; i < columns; i++){
+                var ans = 0;
+                for(let j = 0; j < rows; j++){
+                    if(gridArray[j][i] == turn){
+                        ans++;
+                        if(ans == target){
+                            gameState.textContent = `${turn} Won`;
+                            return;
+                        }
+                    }else ans = 0;
+                }   
             }
-            
         }
-        for(let i = - rows; i < 2*rows; i++){
-            var ans = 0;
-            var i2 = i;
-            for(let j = 0; j < columns; j++){
-                if(gridArray[i2][j] == turn){
-                    ans++;
-                    if(ans == target){
-                        gameState.textContent = `${turn} Won`;
-                        return;
-                    }
-                }else ans = 0;
-                i2++;
-            }
-            var ans2 = 0;
-            i2 = i;
-            for(let j = columns -1; j >= 0; j--){
-                if(gridArray[i2][j] == turn){
-                    ans2++;
-                    if(ans2 == target){
-                        gameState.textContent = `${turn} Won`;
-                        return;
-                    }
-                }else ans2 = 0;
-                i2++;
-            }
+        
+
+        for(let j = -(rows-1); j <= rows+1; j++){
+            var ans=0;
+            var j2 = j;
+            var maxI = rows - 1;
+            var maxj = columns - 1 - j;
+            var maxnumber = Math.min(maxI, maxj);
+            farI = maxnumber;
+            farJ = j+maxnumber;
+            var maxDiagonal = Math.min(farI, farJ) + 1;
+            if(maxDiagonal >= target && farI<rows && farJ<columns && farI>0){
+                loopDiagonally(true, j2);
+                }
+                
+            ans=0;
+            j2 = j;
+            maxI = rows - 1;
+            maxj = j;
+            maxnumber = Math.min(maxI, maxj);
+            farI = maxnumber;
+            farJ = maxnumber-j;
+            maxDiagonal = Math.min(farI, columns - 1 - farJ) + 1;
+            if(maxDiagonal >= target && farI<rows && farJ<columns && farI>0){
+                loopDiagonally(false, j2);
+                }
+
         }
        
     }
