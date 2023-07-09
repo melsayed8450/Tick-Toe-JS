@@ -18,7 +18,7 @@ function startGameButtonClick() {
   var columnsInput = document.getElementById("columnsInput");
   var targetInput = document.getElementById("targetInput");
   if(targetInput.value > rowsInput.value && targetInput.value > columnsInput.value){
-  warn("Target has to be less than or equal to rows and columns");
+  warn("Target has to be less than or equal to rows or columns");
     
   }else{
     localStorage.setItem('rows', rowsInput.value);
